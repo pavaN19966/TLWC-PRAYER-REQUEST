@@ -1,0 +1,599 @@
+/* =========================================
+   TLWC CHURCH – ULTRA PREMIUM YOUTH THEME
+========================================= */
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================
+   PEACEFUL COLORFUL WORSHIP BACKGROUND
+========================================= */
+
+/* =========================================
+   RIGHT SIDE WAVE PAGE BACKGROUND
+========================================= */
+
+.page-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Main Large Wave (Right Side) */
+
+
+/* Second Layer Wave */
+/* .page-wrapper::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px; */
+  /* background: linear-gradient(135deg, #4caf50, #8bc34a); */
+  /* border-radius: 50%;
+  opacity: 0.6;
+  transform: rotate(15deg); */
+/* } */
+
+/* =========================================
+   ULTRA PREMIUM GLASS CARD
+========================================= */
+
+/* =========================================
+   WAVE STYLE CARD DESIGN
+========================================= */
+
+/* =========================================
+   TEAL → BLUE → PURPLE PREMIUM CARD
+========================================= */
+
+.form-container {
+  width: 100%;
+  max-width: 440px;
+  padding: 50px 40px;
+  border-radius: 28px;
+
+  background: linear-gradient(
+    135deg,
+     #324DA1,
+     #324DA1,
+    #324DA1
+  );
+
+  color: white;
+  position: relative;
+  overflow: visible;
+
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.4);
+
+  animation: cardFade 0.8s ease;
+}
+
+.form-top-accent {
+  position: absolute;
+  top: 0;
+  left: 22px;
+  right: 22px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-top-accent .accent-primary,
+.form-top-accent .accent-secondary {
+  display: block;
+  height: 6px;
+  border-radius: 999px 999px 0 0;
+}
+
+.form-top-accent .accent-primary {
+  display: none;
+}
+
+.form-top-accent .accent-secondary {
+  width: 100%;
+  margin-left: 0;
+  background: linear-gradient(90deg,  rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.5));
+  box-shadow:
+      0 0 0 4px rgba(255, 215, 0, 0.4),
+      0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* Soft Light Overlay */
+.form-container::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+/* Card Animation */
+@keyframes cardFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+
+
+
+
+
+@keyframes softMove {
+  from { transform: translateX(-10px); }
+  to { transform: translateX(10px); }
+}
+
+/* 3D Depth Hover */
+.form-container:hover {
+  transform: translateY(-5px) scale(1.01);
+  transition: 0.4s ease;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================
+   TITLE SECTION
+========================================= */
+
+.title-section{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+/* Welcome text */
+.welcome-text{
+  font-size:15px;
+  letter-spacing:1px;
+  color:rgba(255,255,255,0.8);
+  margin-bottom:6px;
+}
+
+/* Church name */
+.church-title{
+  margin:0;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:1px;
+  line-height:1.2;
+  background:linear-gradient(90deg,#FFD700,#ffffff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.church-title .title-line {
+  display: inline;
+}
+
+/* Tagline */
+.church-tagline{
+  margin-top:6px;
+  font-size:14px;
+  color:rgba(255,255,255,0.85);
+  letter-spacing:0.5px;
+  white-space: nowrap;
+}
+
+/* =========================================
+   LOGO WITH GLOW
+========================================= */
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.logo-section img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 4px;
+  background: white;
+  object-fit: cover;
+}
+.form-container,
+.form-container h2,
+.form-container h3,
+.form-container label {
+  color: white;
+}
+.input-group input,
+.input-group textarea {
+  background: rgba(255,255,255,0.95);
+  color: #333;
+}
+.input-group input,
+.input-group textarea {
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 12px;
+  font-size: 14px;
+  color: #333;
+}
+
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fieldEntrance 0.6s ease forwards;
+}
+
+.input-group:nth-child(1) { animation-delay: 0.2s; }
+.input-group:nth-child(2) { animation-delay: 0.3s; }
+.input-group:nth-child(3) { animation-delay: 0.4s; }
+.input-group:nth-child(4) { animation-delay: 0.5s; }
+.input-group:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes fieldEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  width: 100%;
+  padding: 16px 12px;
+  border-radius: 12px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.input-group label {
+  position: absolute;
+  left: 14px;
+  top: 16px;
+  font-size: 14px;
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s ease;
+  background: transparent;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 12px;
+  font-size: 11px;
+  color: #7b4397;
+  background: white;
+  padding: 0 6px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #00c6ff;
+  box-shadow: 0 0 10px rgba(0, 198, 255, 0.4);
+}
+
+.calendar-group .calendar-label {
+  position: static;
+  display: flex;
+  align-items: flex-end;
+  min-height: 42px;
+  margin: 0 0 8px -2px;
+  color: #fff;
+  white-space: nowrap;
+  line-height: 1.2;
+  font-size: clamp(11px, 2.8vw, 14px);
+}
+
+.anniversary-label .date-format {
+  margin-left: 4px;
+}
+
+
+
+
+
+/* =========================================
+   CHECKBOX SECTION
+========================================= */
+
+
+
+
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+
+
+button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  background:linear-gradient(90deg,#FFD700,#ffffff);
+  color: #1f2b5a;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+}
+
+button:disabled {
+  background: #b8bec7;
+  color: #eef1f4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: text-bottom;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 35px 25px;
+  }
+
+  .form-top-accent {
+    top: 0;
+    left: 14px;
+    right: 14px;
+    gap: 3px;
+  }
+
+  .form-top-accent .accent-primary,
+  .form-top-accent .accent-secondary {
+    height: 5px;
+  }
+
+  .title-section h3 {
+    font-size: 22px;
+  }
+
+
+
+  .date-row {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .group-options-row {
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .calendar-group .calendar-label {
+    min-height: 40px;
+    font-size: clamp(10px, 3.2vw, 12px);
+    margin-bottom: 6px;
+  }
+
+  .church-title {
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.15;
+  }
+
+  .church-title .title-line {
+    display: block;
+  }
+
+  .anniversary-label {
+    display: block;
+    white-space: normal;
+    line-height: 1.1;
+    min-height: 34px;
+  }
+
+  .anniversary-label .date-format {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+/* iPhone 12 width tuning: force title to wrap as
+   THE LORD'S
+   WORSHIP CENTER */
+@media (min-width: 375px) and (max-width: 395px) {
+  .church-title {
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.15;
+  }
+
+  .church-title .title-line {
+    display: block;
+  }
+}
+
+.group-section {
+  margin-bottom: 25px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.checkbox-item label {
+  margin: 0;
+  font-size: clamp(12px, 3.6vw, 14px);
+  color: #fff; /* change if background is light */
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.submit-error {
+  margin-top: 12px;
+  color: #ffd4d4;
+  font-size: 13px;
+  text-align: center;
+}
+
+.success-container {
+  width: 100%;
+  max-width: 440px;
+  padding: 54px 36px;
+  border-radius: 28px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(140deg, #1b8f75, #2d5ea0, #3b2b87);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
+  animation: successReveal 0.75s ease both;
+}
+
+.success-icon {
+  width: 118px;
+  height: 118px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  color: #33d10a;
+  border: 8px solid #33d10a;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  animation: iconPop 0.55s ease 0.15s both;
+}
+
+.success-icon .pi {
+  font-size: 54px;
+  font-weight: 900;
+}
+
+.success-container h2 {
+  margin: 0 0 10px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  color: #ffffff;
+}
+
+.success-container p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 15px;
+}
+
+@keyframes successReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes iconPop {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .success-container {
+    padding: 42px 24px;
+  }
+
+  .success-icon {
+    width: 96px;
+    height: 96px;
+    border-width: 6px;
+  }
+
+  .success-icon .pi {
+    font-size: 44px;
+  }
+
+  .success-container h2 {
+    font-size: 42px;
+    line-height: 1.08;
+  }
+
+  .success-container p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

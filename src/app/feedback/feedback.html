@@ -1,0 +1,78 @@
+<div class="page-wrapper">
+<ng-container *ngIf="!submitted(); else successState">
+<div class="form-container">
+  <div class="title-section">
+  <div class="welcome-text">Welcome to</div>
+  <h1 class="church-title">
+    <span class="title-line title-line-1">THE LORD'S</span>
+    <span class="title-line title-line-2">WORSHIP CENTER</span>
+  </h1>
+  <p class="church-tagline">
+    Building lives through the Holy Word of God
+  </p>
+    <!-- LOGO CENTERED BELOW TITLE -->
+    <div class="logo-section">
+      <img [src]="logoSrc"
+           (error)="onLogoError($event)"
+           alt="Church Logo" />
+    </div>
+  </div>
+
+  <form [formGroup]="prayerForm" (ngSubmit)="submit()">
+
+    <!-- NAME -->
+   <div class="input-group">
+  <input type="text" formControlName="name" placeholder=" " />
+  <label>Name *</label>
+</div>
+
+<div class="input-group">
+  <input type="tel" formControlName="phone" pattern="[0-9]*"  maxlength="10"
+  inputmode="numeric" placeholder=" " (input)="allowNumbersOnly($event)"/>
+  <label>Mobile *</label>
+</div>
+
+  <div class="input-group">
+  <input type="text" formControlName="place" placeholder=" " />
+  <label>Place </label>
+</div>
+
+
+
+<div class="input-group">
+  <textarea formControlName="prayerRequest" placeholder=" "></textarea>
+  <label>Prayer Request / Feedback </label>
+</div>
+
+<!-- <div class="input-group">
+  <textarea formControlName="feedback" placeholder=" "></textarea>
+  <label>Feedback</label>
+</div> -->
+
+    <button type="submit"
+            [disabled]="prayerForm.invalid || isSubmitting">
+      <ng-container *ngIf="isSubmitting; else sendRequestText">
+        <span class="btn-spinner" aria-hidden="true"></span>
+        Saving...
+      </ng-container>
+      <ng-template #sendRequestText>SUBMIT</ng-template>
+    </button>
+    <p class="submit-error" *ngIf="submitError">{{ submitError }}</p>
+
+  </form>
+</div>
+</ng-container>
+
+<ng-template #successState>
+  <div class="success-container" role="status" aria-live="polite">
+    <div class="success-icon" aria-hidden="true">
+      <span class="pi pi-check"></span>
+    </div>
+    <h2>Thank You for Submitting</h2>
+    <p>
+      Your prayer request or feedback has been received successfully.
+      We appreciate your message and will keep you in prayer.
+    </p>
+  </div>
+</ng-template>
+</div>
