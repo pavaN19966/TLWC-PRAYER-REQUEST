@@ -1,4 +1,4 @@
-<div class="page-wrapper">
+<div class="page-wrapper" [class.member-details-mode]="showMemberDates()">
 <ng-container *ngIf="!submitted(); else successState">
 <div class="form-container">
   <div class="title-section">
@@ -32,6 +32,34 @@
   <label>Mobile *</label>
 </div>
 
+<ng-container *ngIf="showMemberDates()">
+  <div class="input-group date-picker-group">
+    <label class="date-picker-label" for="dob">Date of Birth</label>
+    <p-datepicker
+      formControlName="dob"
+      inputId="dob"
+      appendTo="body"
+      [showIcon]="true"
+      [showButtonBar]="true"
+      dateFormat="dd/mm/yy"
+      placeholder="Date of Birth">
+    </p-datepicker>
+  </div>
+
+  <div class="input-group date-picker-group">
+    <label class="date-picker-label" for="anniversary">Anniversary Date</label>
+    <p-datepicker
+      formControlName="anniversary"
+      inputId="anniversary"
+      appendTo="body"
+      [showIcon]="true"
+      [showButtonBar]="true"
+      dateFormat="dd/mm/yy"
+      placeholder="Anniversary Date">
+    </p-datepicker>
+  </div>
+</ng-container>
+
   <div class="input-group">
   <input type="text" formControlName="place" placeholder=" " />
   <label>Place </label>
@@ -64,15 +92,28 @@
 </ng-container>
 
 <ng-template #successState>
-  <div class="success-container" role="status" aria-live="polite">
-    <div class="success-icon" aria-hidden="true">
-      <span class="pi pi-check"></span>
+  <div
+    class="success-container"
+    [class.member-details-success]="showMemberDates()"
+    role="status"
+    aria-live="polite">
+    <div
+      class="success-icon"
+      [class.member-details-icon]="showMemberDates()"
+      aria-hidden="true">
+      <span [class]="successIconClass"></span>
     </div>
     <h2>Thank You for Submitting</h2>
-    <p>
-      Your prayer request or feedback has been received successfully.
+    <p *ngIf="showMemberDates(); else feedbackSuccessMessage">
+      Your details has been received successfully.
       We appreciate your message and will keep you in prayer.
     </p>
+    <ng-template #feedbackSuccessMessage>
+      <p>
+        Your prayer request or feedback has been received successfully.
+        We appreciate your message and will keep you in prayer.
+      </p>
+    </ng-template>
   </div>
 </ng-template>
 </div>

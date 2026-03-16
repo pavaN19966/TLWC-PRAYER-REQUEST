@@ -40,6 +40,16 @@ background: linear-gradient(
   animation: cardFade 0.8s ease;
 }
 
+.page-wrapper.member-details-mode .form-container {
+  background: linear-gradient(
+    180deg,
+    #0954ce 0%,
+    #7f6be8 40%,
+    #b676e8 70%,
+    #ea84ce 100%
+  );
+}
+
 .form-top-accent {
   position: absolute;
   top: 0;
@@ -263,8 +273,34 @@ background: linear-gradient(
 
 .input-group input:focus,
 .input-group textarea:focus {
-  border-color: #00c6ff;
-  box-shadow: 0 0 10px rgba(0, 198, 255, 0.4);
+  border-color: hsl(48, 100%, 50%);
+  box-shadow: 0 0 10px rgba(231, 178, 4, 0.4);
+}
+
+.date-picker-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-picker-group .date-picker-label {
+  position: static;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.date-picker-group :is(.p-datepicker, .p-datepicker-input) {
+  width: 100%;
+}
+
+.date-picker-group :is(.p-inputtext, .p-datepicker-input) {
+  width: 100%;
+  padding: 16px 12px;
+  border-radius: 12px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
 }
 
 .calendar-group .calendar-label {
@@ -473,6 +509,10 @@ button:disabled {
   animation: successReveal 0.75s ease both;
 }
 
+.success-container.member-details-success {
+  background: linear-gradient(90deg, #3f3aa8 0%, #6a2d96 100%);
+}
+
 .success-icon {
   width: 118px;
   height: 118px;
@@ -485,6 +525,22 @@ button:disabled {
   border: 8px solid #33d10a;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
   animation: iconPop 0.55s ease 0.15s both;
+}
+
+.success-icon.member-details-icon {
+  width: auto;
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 0;
+  display: block;
+  background: transparent;
+  color: #35d11f;
+  border: 0;
+  box-shadow: none;
+}
+
+.success-icon.member-details-icon .pi {
+  font-size: 100px;
 }
 
 .success-icon .pi {

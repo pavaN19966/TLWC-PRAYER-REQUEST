@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { finalize } from 'rxjs';
@@ -13,13 +13,14 @@ import { finalize } from 'rxjs';
   styleUrl: './feedback.css',
 })
 export class FeedbackComponent implements OnInit {
+  readonly showMemberDates = input(false);
 
   submitted = signal(false);
   isSubmitting = false;
   submitError = '';
   logoSrc = 'assets/TLWC.jpg?v=2';
 
-  apiUrl = 'https://script.google.com/macros/s/AKfycby3cSmc5sAqyAs7dNVtjab8M1RJ9WwaEeZbfpcGKl7k6fOBqvdIINbvU1C1GHYWtnls/exec';
+  apiUrl = 'https://script.google.com/macros/s/AKfycbyjeQ-wnSPIarZl6N7MOTl4P5Kvp4vBODIngqHfIpQ1jhVMJfw57kAm-2KvaYRfLYKF/exec';
 
   private readonly fb = inject(FormBuilder);
 
@@ -55,6 +56,27 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get successIconClass(): string {
+    return this.showMemberDates() ? 'pi pi-check-circle' : 'pi pi-check';
+  }
+
+  private formatDate(value: string | Date): string {
+    if (!value) {
+      return '';
+    }
+
+    const date = value instanceof Date ? value : new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return '';
+    }
+
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+
+    return `${date.getFullYear()}-${month}-${day}`;
+  }
+
   submit(): void {
 
     if (this.prayerForm.invalid) {
@@ -70,6 +92,8 @@ export class FeedbackComponent implements OnInit {
     const payload = JSON.stringify({
       name: formValue.name,
       mobile: formValue.phone,
+      dob: this.formatDate(formValue.dob),
+      anniversary: this.formatDate(formValue.anniversary),
       place: formValue.place,
       prayerRequest: formValue.prayerRequest,
     });
@@ -88,8 +112,11 @@ export class FeedbackComponent implements OnInit {
         this.prayerForm.reset({
           name: '',
           phone: '',
+          dob: '',
+          anniversary: '',
           place: '',
-          prayerRequest: ''
+          prayerRequest: '',
+          feedback: ''
         });
       },
       error: (err) => {
@@ -100,8 +127,9 @@ export class FeedbackComponent implements OnInit {
           this.prayerForm.reset({
             name: '',
             phone: '',
+            dob: '',
+            anniversary: '',
             place: '',
-            prayerRequest: ''
           });
           return;
         }
