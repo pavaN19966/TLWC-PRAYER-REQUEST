@@ -22,7 +22,7 @@
 
     <!-- NAME -->
    <div class="input-group">
-  <input type="text" formControlName="name" placeholder=" " />
+  <input type="text" formControlName="name" placeholder=" " (input)="allowLettersOnly($event)" />
   <label>Name *</label>
 </div>
 
@@ -35,28 +35,30 @@
 <ng-container *ngIf="showMemberDates()">
   <div class="input-group date-picker-group">
     <label class="date-picker-label" for="dob">Date of Birth</label>
-    <p-datepicker
-      formControlName="dob"
-      inputId="dob"
-      appendTo="body"
-      [showIcon]="true"
-      [showButtonBar]="true"
-      dateFormat="dd/mm/yy"
-      placeholder="Date of Birth">
-    </p-datepicker>
+    <mat-form-field appearance="outline" class="material-date-field">
+      <input
+        matInput
+        [matDatepicker]="dobPicker"
+        formControlName="dob"
+        id="dob"
+        placeholder="Date of Birth">
+      <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dobPicker></mat-datepicker>
+    </mat-form-field>
   </div>
 
   <div class="input-group date-picker-group">
     <label class="date-picker-label" for="anniversary">Anniversary Date</label>
-    <p-datepicker
-      formControlName="anniversary"
-      inputId="anniversary"
-      appendTo="body"
-      [showIcon]="true"
-      [showButtonBar]="true"
-      dateFormat="dd/mm/yy"
-      placeholder="Anniversary Date">
-    </p-datepicker>
+    <mat-form-field appearance="outline" class="material-date-field">
+      <input
+        matInput
+        [matDatepicker]="anniversaryPicker"
+        formControlName="anniversary"
+        id="anniversary"
+        placeholder="Anniversary Date">
+      <mat-datepicker-toggle matSuffix [for]="anniversaryPicker"></mat-datepicker-toggle>
+      <mat-datepicker #anniversaryPicker></mat-datepicker>
+    </mat-form-field>
   </div>
 </ng-container>
 
@@ -71,12 +73,6 @@
   <textarea formControlName="prayerRequest" placeholder=" "></textarea>
   <label>Prayer Request / Feedback </label>
 </div>
-
-<!-- <div class="input-group">
-  <textarea formControlName="feedback" placeholder=" "></textarea>
-  <label>Feedback</label>
-</div> -->
-
     <button type="submit"
             [disabled]="prayerForm.invalid || isSubmitting">
       <ng-container *ngIf="isSubmitting; else sendRequestText">

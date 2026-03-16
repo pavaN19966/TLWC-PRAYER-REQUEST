@@ -1,14 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, input, signal } from '@angular/core';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DatePickerModule } from 'primeng/datepicker';
 import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-feedback',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, DatePickerModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './feedback.html',
   styleUrl: './feedback.css',
 })
@@ -20,32 +30,41 @@ export class FeedbackComponent implements OnInit {
   submitError = '';
   logoSrc = 'assets/TLWC.jpg?v=2';
 
-  apiUrl = 'https://script.google.com/macros/s/AKfycbyjeQ-wnSPIarZl6N7MOTl4P5Kvp4vBODIngqHfIpQ1jhVMJfw57kAm-2KvaYRfLYKF/exec';
+  apiUrl =
+    'https://script.google.com/macros/s/AKfycbyjeQ-wnSPIarZl6N7MOTl4P5Kvp4vBODIngqHfIpQ1jhVMJfw57kAm-2KvaYRfLYKF/exec';
 
   private readonly fb = inject(FormBuilder);
 
   constructor(private http: HttpClient) {}
 
-  prayerForm = this.fb.nonNullable.group({
-    name: ['', Validators.required],
+  prayerForm = this.fb.group({
+    name: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s.'-]+$/)]],
     phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-
-    dob: [''],
-    dobYear: ['', [Validators.pattern(/^\d{4}$/)]],
-    anniversary: [''],   // 🔥 Changed to match HTML
-    anniversaryYear: ['', [Validators.pattern(/^\d{4}$/)]],
+    dob: [null as Date | null],
+    anniversary: [null as Date | null],
     place: [''],
     churchGroup: [false],
     youthGroup: [false],
     girlsGroup: [false],
-
     prayerRequest: [''],
-    feedback: ['']
+    feedback: [''],
   });
-  
- allowNumbersOnly(event: any) {
-  event.target.value = event.target.value.replace(/[^0-9]/g, '');
-}
+
+  allowNumbersOnly(event: Event) {
+    const target = event.target as HTMLInputElement | null;
+    if (target) {
+      target.value = target.value.replace(/[^0-9]/g, '');
+    }
+  }
+
+  allowLettersOnly(event: Event) {
+    const target = event.target as HTMLInputElement | null;
+    if (target) {
+      const cleanedValue = target.value.replace(/[^A-Za-z\s.'-]/g, '');
+      target.value = cleanedValue;
+      this.prayerForm.controls.name.setValue(cleanedValue, { emitEvent: false });
+    }
+  }
 
   onLogoError(event: Event): void {
     const img = event.target as HTMLImageElement;
@@ -60,7 +79,7 @@ export class FeedbackComponent implements OnInit {
     return this.showMemberDates() ? 'pi pi-check-circle' : 'pi pi-check';
   }
 
-  private formatDate(value: string | Date): string {
+  private formatDate(value: string | Date | null): string {
     if (!value) {
       return '';
     }
@@ -78,7 +97,6 @@ export class FeedbackComponent implements OnInit {
   }
 
   submit(): void {
-
     if (this.prayerForm.invalid) {
       this.prayerForm.markAllAsTouched();
       return;
@@ -98,44 +116,52 @@ export class FeedbackComponent implements OnInit {
       prayerRequest: formValue.prayerRequest,
     });
 
-    this.http.post(this.apiUrl, payload, {
-      responseType: 'text'
-    })
-    .pipe(
-      finalize(() => {
-        this.isSubmitting = false;
+    this.http
+      .post(this.apiUrl, payload, {
+        responseType: 'text',
       })
-    )
-    .subscribe({
-      next: () => {
-        this.submitted.set(true);
-        this.prayerForm.reset({
-          name: '',
-          phone: '',
-          dob: '',
-          anniversary: '',
-          place: '',
-          prayerRequest: '',
-          feedback: ''
-        });
-      },
-      error: (err) => {
-
-        // Apps Script may still execute even if CORS blocks response
-        if (err?.status === 0) {
+      .pipe(
+        finalize(() => {
+          this.isSubmitting = false;
+        })
+      )
+      .subscribe({
+        next: () => {
           this.submitted.set(true);
           this.prayerForm.reset({
             name: '',
             phone: '',
-            dob: '',
-            anniversary: '',
+            dob: null,
+            anniversary: null,
             place: '',
+            churchGroup: false,
+            youthGroup: false,
+            girlsGroup: false,
+            prayerRequest: '',
+            feedback: '',
           });
-          return;
-        }
+        },
+        error: (err) => {
+          // Apps Script may still execute even if CORS blocks response
+          if (err?.status === 0) {
+            this.submitted.set(true);
+            this.prayerForm.reset({
+              name: '',
+              phone: '',
+              dob: null,
+              anniversary: null,
+              place: '',
+              churchGroup: false,
+              youthGroup: false,
+              girlsGroup: false,
+              prayerRequest: '',
+              feedback: '',
+            });
+            return;
+          }
 
-        this.submitError = 'Something went wrong. Please try again.';
-      },
-    });
+          this.submitError = 'Something went wrong. Please try again.';
+        },
+      });
   }
 }

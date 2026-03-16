@@ -116,9 +116,11 @@ background: linear-gradient(
 }
 
 /* 3D Depth Hover */
-.form-container:hover {
-  transform: translateY(-5px) scale(1.01);
-  transition: 0.4s ease;
+@media (hover: hover) and (pointer: fine) {
+  .form-container:hover {
+    transform: translateY(-5px) scale(1.01);
+    transition: 0.4s ease;
+  }
 }
 
 @keyframes cardEntrance {
@@ -289,18 +291,67 @@ background: linear-gradient(
   font-size: 14px;
 }
 
-.date-picker-group :is(.p-datepicker, .p-datepicker-input) {
+.date-picker-group .material-date-field {
   width: 100%;
+  margin: 0;
 }
 
-.date-picker-group :is(.p-inputtext, .p-datepicker-input) {
-  width: 100%;
-  padding: 16px 12px;
+:host ::ng-deep .date-picker-group .mat-mdc-text-field-wrapper {
   border-radius: 12px;
-  border: 1.5px solid #ddd;
   background: #fff;
-  font-size: 14px;
-  color: #333;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+:host ::ng-deep .date-picker-group .mdc-notched-outline__leading,
+:host ::ng-deep .date-picker-group .mdc-notched-outline__notch,
+:host ::ng-deep .date-picker-group .mdc-notched-outline__trailing {
+  border-color: #ffff !important;
+}
+:host ::ng-deep .date-picker-group .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+:host ::ng-deep .date-picker-group .mat-mdc-form-field-flex {
+  align-items: center;
+  min-height: 56px;
+  padding: 0 12px 0 0;
+}
+
+:host ::ng-deep .date-picker-group .mat-mdc-form-field-infix {
+  min-height: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+:host ::ng-deep .date-picker-group .mat-mdc-input-element,
+:host ::ng-deep .date-picker-group .mat-mdc-icon-button {
+  color: #333 !important;
+}
+
+:host ::ng-deep .date-picker-group .mat-mdc-input-element {
+  margin: 0;
+  line-height: 1.4;
+}
+
+:host ::ng-deep .date-picker-group .mat-mdc-icon-button {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}
+
+:host ::ng-deep .date-picker-group .mat-mdc-form-field-icon-suffix {
+  align-self: center;
+  padding: 0;
+}
+
+:host ::ng-deep .cdk-overlay-pane .mat-datepicker-content,
+:host ::ng-deep .cdk-overlay-pane .mat-mdc-datepicker-content,
+:host ::ng-deep .cdk-overlay-pane .mat-calendar {
+  background: #fff !important;
 }
 
 .calendar-group .calendar-label {
