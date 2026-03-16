@@ -1,6 +1,4 @@
-/* =========================================
-   TLWC CHURCH – ULTRA PREMIUM YOUTH THEME
-========================================= */
+
 
 html, body {
   margin: 0;
@@ -8,67 +6,30 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* =========================================
-   PEACEFUL COLORFUL WORSHIP BACKGROUND
-========================================= */
-
-/* =========================================
-   RIGHT SIDE WAVE PAGE BACKGROUND
-========================================= */
-
 .page-wrapper {
   min-height: 100vh;
   background: linear-gradient(135deg, #fff, #fff);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  /* padding: 20px; */
   position: relative;
   overflow: hidden;
 }
-
-/* Main Large Wave (Right Side) */
-
-
-/* Second Layer Wave */
-/* .page-wrapper::after {
-  content: "";
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 400px;
-  height: 400px; */
-  /* background: linear-gradient(135deg, #4caf50, #8bc34a); */
-  /* border-radius: 50%;
-  opacity: 0.6;
-  transform: rotate(15deg); */
-/* } */
-
-/* =========================================
-   ULTRA PREMIUM GLASS CARD
-========================================= */
-
-/* =========================================
-   WAVE STYLE CARD DESIGN
-========================================= */
-
-/* =========================================
-   TEAL → BLUE → PURPLE PREMIUM CARD
-========================================= */
 
 .form-container {
   width: 100%;
   max-width: 440px;
   padding: 50px 40px;
   border-radius: 28px;
-
-  background: linear-gradient(
-    135deg,
-     #324DA1,
-     #324DA1,
-    #324DA1
-  );
-
+background: linear-gradient(
+  180deg,
+  #301468 0%, 
+  #2F397E 25%,
+  #2F5F91 50%,
+  #2C7FA1 75%,
+  #2D89AA 100%
+);
   color: white;
   position: relative;
   overflow: visible;
