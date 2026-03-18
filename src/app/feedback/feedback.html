@@ -35,30 +35,63 @@
 <ng-container *ngIf="showMemberDates()">
   <div class="input-group date-picker-group">
     <label class="date-picker-label" for="dob">Date of Birth</label>
-    <mat-form-field appearance="outline" class="material-date-field">
+    <div
+      class="material-date-field custom-date-field"
+      [class.date-field-invalid]="hasDateError('dob')">
+      <input
+        class="manual-date-input"
+        id="dob"
+        inputmode="numeric"
+        maxlength="10"
+        placeholder="DD/MM/YYYY"
+        [value]="getDateDisplayValue('dob')"
+        (focus)="onDateFocus('dob')"
+        (input)="handleDateInput('dob', $event)"
+        (blur)="normalizeDateInput('dob')">
+      <mat-datepicker-toggle [for]="dobPicker"></mat-datepicker-toggle>
       <input
         matInput
+        class="datepicker-proxy-input"
         [matDatepicker]="dobPicker"
-        formControlName="dob"
-        id="dob"
-        placeholder="Date of Birth">
-      <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+        tabindex="-1"
+        aria-hidden="true"
+        (dateChange)="onDateSelected('dob', $any($event.value))">
       <mat-datepicker #dobPicker></mat-datepicker>
-    </mat-form-field>
+    </div>
+
+    <div class="date-field-error" *ngIf="hasDateError('dob')">
+        {{ getDateErrorMessage('dob') }}
+    </div>
   </div>
 
   <div class="input-group date-picker-group">
-    <label class="date-picker-label" for="anniversary">Anniversary Date</label>
-    <mat-form-field appearance="outline" class="material-date-field">
+    <label class="date-picker-label" for="anniversary">Wedding Anniversary</label>
+    <div
+      class="material-date-field custom-date-field"
+      [class.date-field-invalid]="hasDateError('anniversary')">
+      <input
+        class="manual-date-input"
+        id="anniversary"
+        inputmode="numeric"
+        maxlength="10"
+        placeholder="DD/MM/YYYY"
+        [value]="getDateDisplayValue('anniversary')"
+        (focus)="onDateFocus('anniversary')"
+        (input)="handleDateInput('anniversary', $event)"
+        (blur)="normalizeDateInput('anniversary')">
+      <mat-datepicker-toggle [for]="anniversaryPicker"></mat-datepicker-toggle>
       <input
         matInput
+        class="datepicker-proxy-input"
         [matDatepicker]="anniversaryPicker"
-        formControlName="anniversary"
-        id="anniversary"
-        placeholder="Anniversary Date">
-      <mat-datepicker-toggle matSuffix [for]="anniversaryPicker"></mat-datepicker-toggle>
+        tabindex="-1"
+        aria-hidden="true"
+        (dateChange)="onDateSelected('anniversary', $any($event.value))">
       <mat-datepicker #anniversaryPicker></mat-datepicker>
-    </mat-form-field>
+    </div>
+    <div class="date-field-error" *ngIf="hasDateError('anniversary')">
+        {{ getDateErrorMessage('anniversary') }}
+    </div>
   </div>
 </ng-container>
 
@@ -110,6 +143,13 @@
         We appreciate your message and will keep you in prayer.
       </p>
     </ng-template>
+    <button
+      *ngIf="showMemberDates()"
+      type="button"
+      class="secondary-success-button"
+      (click)="handleSuccessAction()">
+      Add Member
+    </button>
   </div>
 </ng-template>
 </div>
